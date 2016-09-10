@@ -47,7 +47,37 @@ def get_links(br, k=0):
             return links
 
 
-def draw_boundaries():
+def parse_html(html):
+    soup = BeautifulSoup(html, 'html')
+    maps = soup.findAll('div', {'id': 'map'})
+    if len(maps) == 1:
+        lat = maps[0].attrs['data-latitude']
+        lon = maps[0].attrs['data-longitude']
+
+    elif len(maps) > 1:
+        raise ValueError('more than one mapbox?')
+    else:
+        pass
+    price = soup.find('span',{'class':'price'}).text
+    housing = soup.find('span',{'class':'housing'}).text
+
+
+def insert_mongo(br, links):
+    client = MongoClient()
+    client.drop_database('craigslist')
+
+    db = client['craigslist']
+    coll = db['housing']
+
+    bar = progressbar.ProgressBar()
+    for link in bar(links):
+        br.follow_link(link)
+        html = br.response().read()
+        dic = {'_id': link.attrs[1][1], 'html': html}
+        coll.insert_one(dic)
+
+
+def draw_map():
     p1 = (39.702248, -104.987396)
     p2 = (39.691106, -104.974581)
     p3 = (39.691106, -104.959347)
@@ -58,7 +88,7 @@ def draw_boundaries():
     p8 = (39.771182, -104.973331)
     p9 = (39.743186, -105.014430)
     p10 = (39.718450, -105.003763)
-    points = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p1]
+    points = [p1, p2, p3, p5, p6, p7, p8, p9, p10, p1]
 
     ave_lat = sum(p[0] for p in points) / len(points)
     ave_lon = sum(p[1] for p in points) / len(points)
@@ -85,8 +115,10 @@ def main():
     url = "http://denver.craigslist.org/search/apa?hasPic=1&search_distance=3&postal=80206&max_price=2000&pets_dog=1"
     br = start_browser(url)
     links = get_links(br)
-    df = make_df(links)
-    return df
+    # df = make_df(links)
+    insert_mongo(br, links)
 
 if __name__ == '__main__':
-    draw_boundaries()
+    # draw_map()
+    # main()
+    pass
