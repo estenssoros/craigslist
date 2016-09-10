@@ -58,8 +58,16 @@ def parse_html(html):
         raise ValueError('more than one mapbox?')
     else:
         pass
-    price = soup.find('span',{'class':'price'}).text
-    housing = soup.find('span',{'class':'housing'}).text
+    price = soup.find('span', {'class': 'price'}).text
+    housing = soup.find('span', {'class': 'housing'}).text
+    info = soup.findAll('p', {'class': 'postinginfo reveal'})
+
+    for i in info:
+        if 'Posted' in i.text:
+            posted = i.text
+        elif 'Updated' in i.text:
+            updated = i.text
+    return posted, info
 
 
 def insert_mongo(br, links):
@@ -121,4 +129,6 @@ def main():
 if __name__ == '__main__':
     # draw_map()
     # main()
-    pass
+    with open('test.txt') as f:
+        html = f.read()
+    soup = parse_html(html)
