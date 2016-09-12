@@ -1,0 +1,1983 @@
+
+        <!DOCTYPE html>
+        <head>
+            
+        
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        
+            
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+        
+        
+        
+            
+        
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        
+        
+        
+            
+        
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        
+        
+        
+            
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.min.js"></script>
+        
+        
+        
+            
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js"></script>
+        
+        
+        
+            
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js"></script>
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" />
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://raw.githubusercontent.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css" />
+        
+        
+        
+            
+            <style>
+
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                }
+
+            #map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+            
+        
+            
+            <style> #map_f6466d6aa7ce4eb684a4922ef2146074 {
+                position : relative;
+                width : 100.0%;
+                height: 100.0%;
+                left: 0.0%;
+                top: 0.0%;
+                }
+            </style>
+        
+        
+            
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-dvf/0.2/leaflet-dvf.markers.min.js"></script>
+        
+        
+        
+        
+        </head>
+        <body>
+            
+        
+            
+            <div class="folium-map" id="map_f6466d6aa7ce4eb684a4922ef2146074" ></div>
+        
+        
+        
+        </body>
+        <script>
+            
+        
+            
+
+            var southWest = L.latLng(-90, -180);
+            var northEast = L.latLng(90, 180);
+            var bounds = L.latLngBounds(southWest, northEast);
+
+            var map_f6466d6aa7ce4eb684a4922ef2146074 = L.map('map_f6466d6aa7ce4eb684a4922ef2146074', {
+                                           center:[39.7357044255,-104.980641574],
+                                           zoom: 13,
+                                           maxBounds: bounds,
+                                           layers: [],
+                                           crs: L.CRS.EPSG3857
+                                         });
+            
+        
+        
+            
+            var tile_layer_c3c969c49c004bdcbdb54c2b306c7a05 = L.tileLayer(
+                'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png',
+                {
+                    maxZoom: 18,
+                    minZoom: 1,
+                    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.',
+                    detectRetina: false
+                    }
+                ).addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+
+        
+        
+            
+            var regular_polygon_marker_ee0ad50a76114aafb4ed20e3ca44f307 = new L.RegularPolygonMarker(
+                new L.LatLng(39.716694,-104.991961),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_98a665a3aa834db983382023fb2df752 = L.popup({maxWidth: '300'});
+
+            
+                var html_1fdab3db06a24add91ad5b6f051bc72f = $('         <div id="html_1fdab3db06a24add91ad5b6f051bc72f"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5762258361.html</div>                 ')[0];
+                popup_98a665a3aa834db983382023fb2df752.setContent(html_1fdab3db06a24add91ad5b6f051bc72f);
+            
+
+            regular_polygon_marker_ee0ad50a76114aafb4ed20e3ca44f307.bindPopup(popup_98a665a3aa834db983382023fb2df752);
+
+            
+        
+        
+            
+            var regular_polygon_marker_e471891e42614816b505e2b295925af1 = new L.RegularPolygonMarker(
+                new L.LatLng(39.719434,-104.989879),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_f9095f37a10f4ab2ac8d84abfa664dca = L.popup({maxWidth: '300'});
+
+            
+                var html_e02b021eccb54056a4a86cea67bda73c = $('         <div id="html_e02b021eccb54056a4a86cea67bda73c"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5759206697.html</div>                 ')[0];
+                popup_f9095f37a10f4ab2ac8d84abfa664dca.setContent(html_e02b021eccb54056a4a86cea67bda73c);
+            
+
+            regular_polygon_marker_e471891e42614816b505e2b295925af1.bindPopup(popup_f9095f37a10f4ab2ac8d84abfa664dca);
+
+            
+        
+        
+            
+            var regular_polygon_marker_0bf70fc06a4d44659ab13fd6cc4094be = new L.RegularPolygonMarker(
+                new L.LatLng(39.754086,-104.985824),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_3d697c2ef54044b6b356bea06ce296eb = L.popup({maxWidth: '300'});
+
+            
+                var html_5a07b4f9cf9d424ea863602db0c7b490 = $('         <div id="html_5a07b4f9cf9d424ea863602db0c7b490"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5736809475.html</div>                 ')[0];
+                popup_3d697c2ef54044b6b356bea06ce296eb.setContent(html_5a07b4f9cf9d424ea863602db0c7b490);
+            
+
+            regular_polygon_marker_0bf70fc06a4d44659ab13fd6cc4094be.bindPopup(popup_3d697c2ef54044b6b356bea06ce296eb);
+
+            
+        
+        
+            
+            var regular_polygon_marker_f21ef07fa0b24e41920e317e8a3394f6 = new L.RegularPolygonMarker(
+                new L.LatLng(39.758286,-104.987636),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_5d6f0cda596d4f98ad2d910ff3a70700 = L.popup({maxWidth: '300'});
+
+            
+                var html_3af9f327030f437fbfe9213c5de05cb0 = $('         <div id="html_3af9f327030f437fbfe9213c5de05cb0"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5739931999.html</div>                 ')[0];
+                popup_5d6f0cda596d4f98ad2d910ff3a70700.setContent(html_3af9f327030f437fbfe9213c5de05cb0);
+            
+
+            regular_polygon_marker_f21ef07fa0b24e41920e317e8a3394f6.bindPopup(popup_5d6f0cda596d4f98ad2d910ff3a70700);
+
+            
+        
+        
+            
+            var regular_polygon_marker_2af78e5d7403436cb056d442cf2ac763 = new L.RegularPolygonMarker(
+                new L.LatLng(39.747456,-104.978246),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_17cd0ceaed204ef4bc60cc5e1ff2d0df = L.popup({maxWidth: '300'});
+
+            
+                var html_33dd3754101e412ea49efe080f7d3095 = $('         <div id="html_33dd3754101e412ea49efe080f7d3095"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5776987899.html</div>                 ')[0];
+                popup_17cd0ceaed204ef4bc60cc5e1ff2d0df.setContent(html_33dd3754101e412ea49efe080f7d3095);
+            
+
+            regular_polygon_marker_2af78e5d7403436cb056d442cf2ac763.bindPopup(popup_17cd0ceaed204ef4bc60cc5e1ff2d0df);
+
+            
+        
+        
+            
+            var regular_polygon_marker_3e70cd78f12346acb5e902d5d78754b7 = new L.RegularPolygonMarker(
+                new L.LatLng(39.735657,-104.975524),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_d127316ad1be43bcbb98ce3d5644bdf9 = L.popup({maxWidth: '300'});
+
+            
+                var html_1ea3c0211251414dab12692a2cfa874f = $('         <div id="html_1ea3c0211251414dab12692a2cfa874f"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5775476443.html</div>                 ')[0];
+                popup_d127316ad1be43bcbb98ce3d5644bdf9.setContent(html_1ea3c0211251414dab12692a2cfa874f);
+            
+
+            regular_polygon_marker_3e70cd78f12346acb5e902d5d78754b7.bindPopup(popup_d127316ad1be43bcbb98ce3d5644bdf9);
+
+            
+        
+        
+            
+            var regular_polygon_marker_ed6a40755364458592fbcc4747fdfec9 = new L.RegularPolygonMarker(
+                new L.LatLng(39.7327,-104.9717),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_1e24ab9eae154106b334780bf9a2db00 = L.popup({maxWidth: '300'});
+
+            
+                var html_b06a3c0a072b4baa9120d60b04ca2dfa = $('         <div id="html_b06a3c0a072b4baa9120d60b04ca2dfa"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5774938918.html</div>                 ')[0];
+                popup_1e24ab9eae154106b334780bf9a2db00.setContent(html_b06a3c0a072b4baa9120d60b04ca2dfa);
+            
+
+            regular_polygon_marker_ed6a40755364458592fbcc4747fdfec9.bindPopup(popup_1e24ab9eae154106b334780bf9a2db00);
+
+            
+        
+        
+            
+            var regular_polygon_marker_baac6b91a61f4f3e88a79c8cbaa46b1d = new L.RegularPolygonMarker(
+                new L.LatLng(39.735492,-104.975545),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_19a2b04718824362919c33dbb3cad185 = L.popup({maxWidth: '300'});
+
+            
+                var html_196df80a5d0449579cc4f53354371daa = $('         <div id="html_196df80a5d0449579cc4f53354371daa"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5741978880.html</div>                 ')[0];
+                popup_19a2b04718824362919c33dbb3cad185.setContent(html_196df80a5d0449579cc4f53354371daa);
+            
+
+            regular_polygon_marker_baac6b91a61f4f3e88a79c8cbaa46b1d.bindPopup(popup_19a2b04718824362919c33dbb3cad185);
+
+            
+        
+        
+            
+            var regular_polygon_marker_7509842e781c4bdab88b1f1de9a041f0 = new L.RegularPolygonMarker(
+                new L.LatLng(39.72894,-104.978828),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_7794dafa1cb04656ac086a379eea594b = L.popup({maxWidth: '300'});
+
+            
+                var html_32bca5177b5744cea44950fbf1356216 = $('         <div id="html_32bca5177b5744cea44950fbf1356216"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5774230366.html</div>                 ')[0];
+                popup_7794dafa1cb04656ac086a379eea594b.setContent(html_32bca5177b5744cea44950fbf1356216);
+            
+
+            regular_polygon_marker_7509842e781c4bdab88b1f1de9a041f0.bindPopup(popup_7794dafa1cb04656ac086a379eea594b);
+
+            
+        
+        
+            
+            var regular_polygon_marker_8f75bdd01cf44eb7aff44f5faebdca41 = new L.RegularPolygonMarker(
+                new L.LatLng(39.713214,-104.979214),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_37c8dc8cc3fd4835b029211c8d916acc = L.popup({maxWidth: '300'});
+
+            
+                var html_8751e8df98c64aeea80c139144017d18 = $('         <div id="html_8751e8df98c64aeea80c139144017d18"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5774188259.html</div>                 ')[0];
+                popup_37c8dc8cc3fd4835b029211c8d916acc.setContent(html_8751e8df98c64aeea80c139144017d18);
+            
+
+            regular_polygon_marker_8f75bdd01cf44eb7aff44f5faebdca41.bindPopup(popup_37c8dc8cc3fd4835b029211c8d916acc);
+
+            
+        
+        
+            
+            var regular_polygon_marker_f7aa0ea3f3a24e22b4e7cbd9ff7fc510 = new L.RegularPolygonMarker(
+                new L.LatLng(39.746849,-104.982434),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_59a2f041d2174f398162aaa85d75bdbe = L.popup({maxWidth: '300'});
+
+            
+                var html_945bf600f5e0497c89f23589af84d937 = $('         <div id="html_945bf600f5e0497c89f23589af84d937"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5773871987.html</div>                 ')[0];
+                popup_59a2f041d2174f398162aaa85d75bdbe.setContent(html_945bf600f5e0497c89f23589af84d937);
+            
+
+            regular_polygon_marker_f7aa0ea3f3a24e22b4e7cbd9ff7fc510.bindPopup(popup_59a2f041d2174f398162aaa85d75bdbe);
+
+            
+        
+        
+            
+            var regular_polygon_marker_43d880209d5c499780c95a047bb34317 = new L.RegularPolygonMarker(
+                new L.LatLng(39.741686,-104.967435),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_3561e9283eda4a5eaf41c43c9f63318d = L.popup({maxWidth: '300'});
+
+            
+                var html_fbda7636f04047e393506092907f4990 = $('         <div id="html_fbda7636f04047e393506092907f4990"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5773814454.html</div>                 ')[0];
+                popup_3561e9283eda4a5eaf41c43c9f63318d.setContent(html_fbda7636f04047e393506092907f4990);
+            
+
+            regular_polygon_marker_43d880209d5c499780c95a047bb34317.bindPopup(popup_3561e9283eda4a5eaf41c43c9f63318d);
+
+            
+        
+        
+            
+            var regular_polygon_marker_fcb8dd5ce7fc48d3abb4eb4a97bdb93d = new L.RegularPolygonMarker(
+                new L.LatLng(39.738876,-104.966168),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_09d6de5b88be4e168b1a1a8432ab2a4c = L.popup({maxWidth: '300'});
+
+            
+                var html_ca97602d626746a6954074403dfa791d = $('         <div id="html_ca97602d626746a6954074403dfa791d"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5773794118.html</div>                 ')[0];
+                popup_09d6de5b88be4e168b1a1a8432ab2a4c.setContent(html_ca97602d626746a6954074403dfa791d);
+            
+
+            regular_polygon_marker_fcb8dd5ce7fc48d3abb4eb4a97bdb93d.bindPopup(popup_09d6de5b88be4e168b1a1a8432ab2a4c);
+
+            
+        
+        
+            
+            var regular_polygon_marker_ee8638d788704aabb0d0a3a5efffbaef = new L.RegularPolygonMarker(
+                new L.LatLng(39.764357,-104.976171),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_ac1a80fa1c504490822c9e0045756d1c = L.popup({maxWidth: '300'});
+
+            
+                var html_a32e6704f73e4d20a3616f261fd35138 = $('         <div id="html_a32e6704f73e4d20a3616f261fd35138"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5773641488.html</div>                 ')[0];
+                popup_ac1a80fa1c504490822c9e0045756d1c.setContent(html_a32e6704f73e4d20a3616f261fd35138);
+            
+
+            regular_polygon_marker_ee8638d788704aabb0d0a3a5efffbaef.bindPopup(popup_ac1a80fa1c504490822c9e0045756d1c);
+
+            
+        
+        
+            
+            var regular_polygon_marker_ef4d9ebf2135497ea13deada89009855 = new L.RegularPolygonMarker(
+                new L.LatLng(39.747248,-104.983803),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_2e760fa172ba43d78b95acb481f1097e = L.popup({maxWidth: '300'});
+
+            
+                var html_e0fb3f7113bc44fe9018c3c93ce3b6af = $('         <div id="html_e0fb3f7113bc44fe9018c3c93ce3b6af"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5772829558.html</div>                 ')[0];
+                popup_2e760fa172ba43d78b95acb481f1097e.setContent(html_e0fb3f7113bc44fe9018c3c93ce3b6af);
+            
+
+            regular_polygon_marker_ef4d9ebf2135497ea13deada89009855.bindPopup(popup_2e760fa172ba43d78b95acb481f1097e);
+
+            
+        
+        
+            
+            var regular_polygon_marker_8d000d6775ad476fa9a45eff8e4532e5 = new L.RegularPolygonMarker(
+                new L.LatLng(39.727287,-104.968536),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_108bc095e13f42a99f14a6d9a5816d79 = L.popup({maxWidth: '300'});
+
+            
+                var html_cfca0d431ee740a7bd551061d5b71e46 = $('         <div id="html_cfca0d431ee740a7bd551061d5b71e46"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5759971763.html</div>                 ')[0];
+                popup_108bc095e13f42a99f14a6d9a5816d79.setContent(html_cfca0d431ee740a7bd551061d5b71e46);
+            
+
+            regular_polygon_marker_8d000d6775ad476fa9a45eff8e4532e5.bindPopup(popup_108bc095e13f42a99f14a6d9a5816d79);
+
+            
+        
+        
+            
+            var regular_polygon_marker_3987bfdb3b2f4fc88cae23ee4c465d60 = new L.RegularPolygonMarker(
+                new L.LatLng(39.747248,-104.983803),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_4edf57b311224f93919d8eb52669b60d = L.popup({maxWidth: '300'});
+
+            
+                var html_b3397f6c9a6044ea870eb3ccecc3ef08 = $('         <div id="html_b3397f6c9a6044ea870eb3ccecc3ef08"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5757935701.html</div>                 ')[0];
+                popup_4edf57b311224f93919d8eb52669b60d.setContent(html_b3397f6c9a6044ea870eb3ccecc3ef08);
+            
+
+            regular_polygon_marker_3987bfdb3b2f4fc88cae23ee4c465d60.bindPopup(popup_4edf57b311224f93919d8eb52669b60d);
+
+            
+        
+        
+            
+            var regular_polygon_marker_eba2ba427bea4028992df86f5394d0a9 = new L.RegularPolygonMarker(
+                new L.LatLng(39.734898,-104.983528),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_1d60b2e158b545ddb5c429eb5a96fa11 = L.popup({maxWidth: '300'});
+
+            
+                var html_47f46e8db04d4494b0d49dc28a1b9a6a = $('         <div id="html_47f46e8db04d4494b0d49dc28a1b9a6a"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5744760782.html</div>                 ')[0];
+                popup_1d60b2e158b545ddb5c429eb5a96fa11.setContent(html_47f46e8db04d4494b0d49dc28a1b9a6a);
+            
+
+            regular_polygon_marker_eba2ba427bea4028992df86f5394d0a9.bindPopup(popup_1d60b2e158b545ddb5c429eb5a96fa11);
+
+            
+        
+        
+            
+            var regular_polygon_marker_c91327e73a4f4630a4e59658e8a2112d = new L.RegularPolygonMarker(
+                new L.LatLng(39.733686,-104.982336),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_95de9236642c42c89b19ee94ed57918d = L.popup({maxWidth: '300'});
+
+            
+                var html_6f900906ee714efc861ac19964139c2a = $('         <div id="html_6f900906ee714efc861ac19964139c2a"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5759852694.html</div>                 ')[0];
+                popup_95de9236642c42c89b19ee94ed57918d.setContent(html_6f900906ee714efc861ac19964139c2a);
+            
+
+            regular_polygon_marker_c91327e73a4f4630a4e59658e8a2112d.bindPopup(popup_95de9236642c42c89b19ee94ed57918d);
+
+            
+        
+        
+            
+            var regular_polygon_marker_ed035444d85142d39e9094baa9f4a7af = new L.RegularPolygonMarker(
+                new L.LatLng(39.724919,-104.992193),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_07d0b5259ff74017b13539b25aa56252 = L.popup({maxWidth: '300'});
+
+            
+                var html_c439b383b7b14a84b62a5fb333fa7986 = $('         <div id="html_c439b383b7b14a84b62a5fb333fa7986"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5771089842.html</div>                 ')[0];
+                popup_07d0b5259ff74017b13539b25aa56252.setContent(html_c439b383b7b14a84b62a5fb333fa7986);
+            
+
+            regular_polygon_marker_ed035444d85142d39e9094baa9f4a7af.bindPopup(popup_07d0b5259ff74017b13539b25aa56252);
+
+            
+        
+        
+            
+            var regular_polygon_marker_455a2fc69d454152b833c6a5331b3102 = new L.RegularPolygonMarker(
+                new L.LatLng(39.742666,-104.978936),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_4453f307145d4835a5c94645b949a5e5 = L.popup({maxWidth: '300'});
+
+            
+                var html_7247a7394f0e48f4aa9784a1e333bf11 = $('         <div id="html_7247a7394f0e48f4aa9784a1e333bf11"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5771114567.html</div>                 ')[0];
+                popup_4453f307145d4835a5c94645b949a5e5.setContent(html_7247a7394f0e48f4aa9784a1e333bf11);
+            
+
+            regular_polygon_marker_455a2fc69d454152b833c6a5331b3102.bindPopup(popup_4453f307145d4835a5c94645b949a5e5);
+
+            
+        
+        
+            
+            var regular_polygon_marker_1c66bb85d2744debabb533ebcfa5c221 = new L.RegularPolygonMarker(
+                new L.LatLng(39.713136,-104.979218),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_169e8b6b944145d1bf5d093e424441fc = L.popup({maxWidth: '300'});
+
+            
+                var html_6320635fc26a4946b996fd0bbd07e97b = $('         <div id="html_6320635fc26a4946b996fd0bbd07e97b"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5771065588.html</div>                 ')[0];
+                popup_169e8b6b944145d1bf5d093e424441fc.setContent(html_6320635fc26a4946b996fd0bbd07e97b);
+            
+
+            regular_polygon_marker_1c66bb85d2744debabb533ebcfa5c221.bindPopup(popup_169e8b6b944145d1bf5d093e424441fc);
+
+            
+        
+        
+            
+            var regular_polygon_marker_5735cb291d384782b955a02388342768 = new L.RegularPolygonMarker(
+                new L.LatLng(39.713136,-104.979218),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_845f2d8df54e4dfc93c20d28eb761154 = L.popup({maxWidth: '300'});
+
+            
+                var html_f917ddbf485a4ba3a6ca3b9e0181c454 = $('         <div id="html_f917ddbf485a4ba3a6ca3b9e0181c454"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5759572978.html</div>                 ')[0];
+                popup_845f2d8df54e4dfc93c20d28eb761154.setContent(html_f917ddbf485a4ba3a6ca3b9e0181c454);
+            
+
+            regular_polygon_marker_5735cb291d384782b955a02388342768.bindPopup(popup_845f2d8df54e4dfc93c20d28eb761154);
+
+            
+        
+        
+            
+            var regular_polygon_marker_32c8bfc1644344c68665f45c0dbe9ab8 = new L.RegularPolygonMarker(
+                new L.LatLng(39.743161,-104.945249),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_c6e8a5bdb0c344b794f4a3746ff257f8 = L.popup({maxWidth: '300'});
+
+            
+                var html_59132ba5bb47404fb709e3dba27e8487 = $('         <div id="html_59132ba5bb47404fb709e3dba27e8487"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5763894380.html</div>                 ')[0];
+                popup_c6e8a5bdb0c344b794f4a3746ff257f8.setContent(html_59132ba5bb47404fb709e3dba27e8487);
+            
+
+            regular_polygon_marker_32c8bfc1644344c68665f45c0dbe9ab8.bindPopup(popup_c6e8a5bdb0c344b794f4a3746ff257f8);
+
+            
+        
+        
+            
+            var regular_polygon_marker_81295d0e5dfc4ba1ba845e555f510671 = new L.RegularPolygonMarker(
+                new L.LatLng(39.727389,-104.978743),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_317a1fb0683c408f872fd4371345affd = L.popup({maxWidth: '300'});
+
+            
+                var html_51e052f9784e451c875b68b3837e4141 = $('         <div id="html_51e052f9784e451c875b68b3837e4141"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5757057208.html</div>                 ')[0];
+                popup_317a1fb0683c408f872fd4371345affd.setContent(html_51e052f9784e451c875b68b3837e4141);
+            
+
+            regular_polygon_marker_81295d0e5dfc4ba1ba845e555f510671.bindPopup(popup_317a1fb0683c408f872fd4371345affd);
+
+            
+        
+        
+            
+            var regular_polygon_marker_ea91c847eafb40a58171275144c804e2 = new L.RegularPolygonMarker(
+                new L.LatLng(39.72798,-104.984936),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_7c07fbe9688840e8850065fe50c50d0e = L.popup({maxWidth: '300'});
+
+            
+                var html_d18a9d392f0e46588d3bc2c9e35cc455 = $('         <div id="html_d18a9d392f0e46588d3bc2c9e35cc455"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5769331585.html</div>                 ')[0];
+                popup_7c07fbe9688840e8850065fe50c50d0e.setContent(html_d18a9d392f0e46588d3bc2c9e35cc455);
+            
+
+            regular_polygon_marker_ea91c847eafb40a58171275144c804e2.bindPopup(popup_7c07fbe9688840e8850065fe50c50d0e);
+
+            
+        
+        
+            
+            var regular_polygon_marker_0e9b125e2b9943d2b10874ee618d1309 = new L.RegularPolygonMarker(
+                new L.LatLng(39.756759,-104.991401),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_24050abc983c44dea13b1b0f9e9ec83c = L.popup({maxWidth: '300'});
+
+            
+                var html_726c6a3080d2477f95d582247ee2842a = $('         <div id="html_726c6a3080d2477f95d582247ee2842a"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5768935369.html</div>                 ')[0];
+                popup_24050abc983c44dea13b1b0f9e9ec83c.setContent(html_726c6a3080d2477f95d582247ee2842a);
+            
+
+            regular_polygon_marker_0e9b125e2b9943d2b10874ee618d1309.bindPopup(popup_24050abc983c44dea13b1b0f9e9ec83c);
+
+            
+        
+        
+            
+            var regular_polygon_marker_9b718a2f76eb4a90a8d65d1f827b85f3 = new L.RegularPolygonMarker(
+                new L.LatLng(39.706526,-104.966898),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_f9977834cb484a0e90955112a39872b7 = L.popup({maxWidth: '300'});
+
+            
+                var html_2583050aae404dbfbddd8e43081e6ebd = $('         <div id="html_2583050aae404dbfbddd8e43081e6ebd"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5768935387.html</div>                 ')[0];
+                popup_f9977834cb484a0e90955112a39872b7.setContent(html_2583050aae404dbfbddd8e43081e6ebd);
+            
+
+            regular_polygon_marker_9b718a2f76eb4a90a8d65d1f827b85f3.bindPopup(popup_f9977834cb484a0e90955112a39872b7);
+
+            
+        
+        
+            
+            var regular_polygon_marker_3f8b1c966dec4712b426e9777e094494 = new L.RegularPolygonMarker(
+                new L.LatLng(39.713795,-104.990223),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_1558a9f981694505b931e162709ed554 = L.popup({maxWidth: '300'});
+
+            
+                var html_a8d37bbbf15549a3b1b555a2bc0680d6 = $('         <div id="html_a8d37bbbf15549a3b1b555a2bc0680d6"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5746587063.html</div>                 ')[0];
+                popup_1558a9f981694505b931e162709ed554.setContent(html_a8d37bbbf15549a3b1b555a2bc0680d6);
+            
+
+            regular_polygon_marker_3f8b1c966dec4712b426e9777e094494.bindPopup(popup_1558a9f981694505b931e162709ed554);
+
+            
+        
+        
+            
+            var regular_polygon_marker_68236e2850e84b4bb859f7cb3db97b9f = new L.RegularPolygonMarker(
+                new L.LatLng(39.720083,-104.981436),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_2f8915a0501a4d45b46d96e8ac33592e = L.popup({maxWidth: '300'});
+
+            
+                var html_a54e601da37c47e4aba8de3b43e3c3cf = $('         <div id="html_a54e601da37c47e4aba8de3b43e3c3cf"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5723905963.html</div>                 ')[0];
+                popup_2f8915a0501a4d45b46d96e8ac33592e.setContent(html_a54e601da37c47e4aba8de3b43e3c3cf);
+            
+
+            regular_polygon_marker_68236e2850e84b4bb859f7cb3db97b9f.bindPopup(popup_2f8915a0501a4d45b46d96e8ac33592e);
+
+            
+        
+        
+            
+            var regular_polygon_marker_ecef528f76374d5ea5785ffeb7a06d74 = new L.RegularPolygonMarker(
+                new L.LatLng(39.73833,-104.994975),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_8639ea9e35ff4dc88ef87f5a70264a2a = L.popup({maxWidth: '300'});
+
+            
+                var html_ad51d403a5e8419c8b679617dc3535f1 = $('         <div id="html_ad51d403a5e8419c8b679617dc3535f1"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5767375502.html</div>                 ')[0];
+                popup_8639ea9e35ff4dc88ef87f5a70264a2a.setContent(html_ad51d403a5e8419c8b679617dc3535f1);
+            
+
+            regular_polygon_marker_ecef528f76374d5ea5785ffeb7a06d74.bindPopup(popup_8639ea9e35ff4dc88ef87f5a70264a2a);
+
+            
+        
+        
+            
+            var regular_polygon_marker_eb2a265138b949b1b32a643b7671e84d = new L.RegularPolygonMarker(
+                new L.LatLng(39.75053,-104.982018),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_4d4d05c7fec84b4cbc204c152a3c4b34 = L.popup({maxWidth: '300'});
+
+            
+                var html_7c1b3236a5ba40dc9e66fcb33c391346 = $('         <div id="html_7c1b3236a5ba40dc9e66fcb33c391346"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5742339258.html</div>                 ')[0];
+                popup_4d4d05c7fec84b4cbc204c152a3c4b34.setContent(html_7c1b3236a5ba40dc9e66fcb33c391346);
+            
+
+            regular_polygon_marker_eb2a265138b949b1b32a643b7671e84d.bindPopup(popup_4d4d05c7fec84b4cbc204c152a3c4b34);
+
+            
+        
+        
+            
+            var regular_polygon_marker_a1a83d2a5cf749308a0928a268b63776 = new L.RegularPolygonMarker(
+                new L.LatLng(39.7442,-104.977736),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_229eb9cf775f416ea980bab76d93eabc = L.popup({maxWidth: '300'});
+
+            
+                var html_e69d36022ad846a1866024d56b3dbfd1 = $('         <div id="html_e69d36022ad846a1866024d56b3dbfd1"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5751877019.html</div>                 ')[0];
+                popup_229eb9cf775f416ea980bab76d93eabc.setContent(html_e69d36022ad846a1866024d56b3dbfd1);
+            
+
+            regular_polygon_marker_a1a83d2a5cf749308a0928a268b63776.bindPopup(popup_229eb9cf775f416ea980bab76d93eabc);
+
+            
+        
+        
+            
+            var regular_polygon_marker_b2543ba6fb654aeea32a02f9010aeee3 = new L.RegularPolygonMarker(
+                new L.LatLng(39.736886,-104.996637),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_8f2c74ba48a6440eb54ab3cea2288976 = L.popup({maxWidth: '300'});
+
+            
+                var html_8938419e2c61444bbe578ce383c3cfb6 = $('         <div id="html_8938419e2c61444bbe578ce383c3cfb6"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5760048367.html</div>                 ')[0];
+                popup_8f2c74ba48a6440eb54ab3cea2288976.setContent(html_8938419e2c61444bbe578ce383c3cfb6);
+            
+
+            regular_polygon_marker_b2543ba6fb654aeea32a02f9010aeee3.bindPopup(popup_8f2c74ba48a6440eb54ab3cea2288976);
+
+            
+        
+        
+            
+            var regular_polygon_marker_378604f375d3499289a2dae790d018b7 = new L.RegularPolygonMarker(
+                new L.LatLng(39.746849,-104.982434),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_f2b616cc5b764883bc1ff61da059c9ee = L.popup({maxWidth: '300'});
+
+            
+                var html_6ecbaaa7030640bca51cdfdae383b00e = $('         <div id="html_6ecbaaa7030640bca51cdfdae383b00e"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5746914082.html</div>                 ')[0];
+                popup_f2b616cc5b764883bc1ff61da059c9ee.setContent(html_6ecbaaa7030640bca51cdfdae383b00e);
+            
+
+            regular_polygon_marker_378604f375d3499289a2dae790d018b7.bindPopup(popup_f2b616cc5b764883bc1ff61da059c9ee);
+
+            
+        
+        
+            
+            var regular_polygon_marker_ed7d788c1d97499897f51db42b64130c = new L.RegularPolygonMarker(
+                new L.LatLng(39.733974,-104.995201),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_9aac9ea78a7043c8bd2f4b4aae61ed53 = L.popup({maxWidth: '300'});
+
+            
+                var html_fe7d6986d07840a5a2cb63f5eadc0469 = $('         <div id="html_fe7d6986d07840a5a2cb63f5eadc0469"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5764876085.html</div>                 ')[0];
+                popup_9aac9ea78a7043c8bd2f4b4aae61ed53.setContent(html_fe7d6986d07840a5a2cb63f5eadc0469);
+            
+
+            regular_polygon_marker_ed7d788c1d97499897f51db42b64130c.bindPopup(popup_9aac9ea78a7043c8bd2f4b4aae61ed53);
+
+            
+        
+        
+            
+            var regular_polygon_marker_368d3687eee4417ba9c064c8c3f226f6 = new L.RegularPolygonMarker(
+                new L.LatLng(39.753987,-104.967241),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_c4d0b47eb9bd43f488f3e44051ecf5c9 = L.popup({maxWidth: '300'});
+
+            
+                var html_e15ebd17d9964537a9aa9b5a721039a5 = $('         <div id="html_e15ebd17d9964537a9aa9b5a721039a5"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5763018453.html</div>                 ')[0];
+                popup_c4d0b47eb9bd43f488f3e44051ecf5c9.setContent(html_e15ebd17d9964537a9aa9b5a721039a5);
+            
+
+            regular_polygon_marker_368d3687eee4417ba9c064c8c3f226f6.bindPopup(popup_c4d0b47eb9bd43f488f3e44051ecf5c9);
+
+            
+        
+        
+            
+            var regular_polygon_marker_2d5e22a6d0584224b7d6018505169a2f = new L.RegularPolygonMarker(
+                new L.LatLng(39.7442,-104.977736),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_798a9abd8674463ca505abf36c9a9afa = L.popup({maxWidth: '300'});
+
+            
+                var html_9455984ce3f44901bbc3b88796d20314 = $('         <div id="html_9455984ce3f44901bbc3b88796d20314"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5738347302.html</div>                 ')[0];
+                popup_798a9abd8674463ca505abf36c9a9afa.setContent(html_9455984ce3f44901bbc3b88796d20314);
+            
+
+            regular_polygon_marker_2d5e22a6d0584224b7d6018505169a2f.bindPopup(popup_798a9abd8674463ca505abf36c9a9afa);
+
+            
+        
+        
+            
+            var regular_polygon_marker_b650e1a5bd7f43ad8fe6bec2c6a481a4 = new L.RegularPolygonMarker(
+                new L.LatLng(39.7161,-104.982412),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_48b55c3af1464e4687fd6ff66e6c9bc0 = L.popup({maxWidth: '300'});
+
+            
+                var html_26c46366f880402a83dffa97680062cc = $('         <div id="html_26c46366f880402a83dffa97680062cc"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5760146692.html</div>                 ')[0];
+                popup_48b55c3af1464e4687fd6ff66e6c9bc0.setContent(html_26c46366f880402a83dffa97680062cc);
+            
+
+            regular_polygon_marker_b650e1a5bd7f43ad8fe6bec2c6a481a4.bindPopup(popup_48b55c3af1464e4687fd6ff66e6c9bc0);
+
+            
+        
+        
+            
+            var regular_polygon_marker_6d0e531507cc4ae6b6a80d9de421559b = new L.RegularPolygonMarker(
+                new L.LatLng(39.726465,-104.989986),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_7cd418c747554691b92320799a79bd8f = L.popup({maxWidth: '300'});
+
+            
+                var html_05aae4e24ad0499da84db47edcb2d27c = $('         <div id="html_05aae4e24ad0499da84db47edcb2d27c"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5760016222.html</div>                 ')[0];
+                popup_7cd418c747554691b92320799a79bd8f.setContent(html_05aae4e24ad0499da84db47edcb2d27c);
+            
+
+            regular_polygon_marker_6d0e531507cc4ae6b6a80d9de421559b.bindPopup(popup_7cd418c747554691b92320799a79bd8f);
+
+            
+        
+        
+            
+            var regular_polygon_marker_abcf17306b9e422fba612c4b2ac7e29f = new L.RegularPolygonMarker(
+                new L.LatLng(39.726465,-104.990158),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_6d58a936bfe7410ab54e59632e51b0e8 = L.popup({maxWidth: '300'});
+
+            
+                var html_4467f5359d264aca9946b83230bc0a91 = $('         <div id="html_4467f5359d264aca9946b83230bc0a91"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5759972040.html</div>                 ')[0];
+                popup_6d58a936bfe7410ab54e59632e51b0e8.setContent(html_4467f5359d264aca9946b83230bc0a91);
+            
+
+            regular_polygon_marker_abcf17306b9e422fba612c4b2ac7e29f.bindPopup(popup_6d58a936bfe7410ab54e59632e51b0e8);
+
+            
+        
+        
+            
+            var regular_polygon_marker_93138366375d42d0a70576dfc948e79d = new L.RegularPolygonMarker(
+                new L.LatLng(39.756231,-104.973636),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_b807c2251c5d4f778df010f8cf08d10e = L.popup({maxWidth: '300'});
+
+            
+                var html_c1d2d19dcc7c4942981e8e4da37a2d50 = $('         <div id="html_c1d2d19dcc7c4942981e8e4da37a2d50"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5722502141.html</div>                 ')[0];
+                popup_b807c2251c5d4f778df010f8cf08d10e.setContent(html_c1d2d19dcc7c4942981e8e4da37a2d50);
+            
+
+            regular_polygon_marker_93138366375d42d0a70576dfc948e79d.bindPopup(popup_b807c2251c5d4f778df010f8cf08d10e);
+
+            
+        
+        
+            
+            var regular_polygon_marker_89e2d8a9ce814da5b5789361f4a9fceb = new L.RegularPolygonMarker(
+                new L.LatLng(39.730802,-104.98626),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_9b34f250388f4692a8b169bd01b8a9d4 = L.popup({maxWidth: '300'});
+
+            
+                var html_c4c5b95a5aa44a018b2d9cedfb386334 = $('         <div id="html_c4c5b95a5aa44a018b2d9cedfb386334"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5724303836.html</div>                 ')[0];
+                popup_9b34f250388f4692a8b169bd01b8a9d4.setContent(html_c4c5b95a5aa44a018b2d9cedfb386334);
+            
+
+            regular_polygon_marker_89e2d8a9ce814da5b5789361f4a9fceb.bindPopup(popup_9b34f250388f4692a8b169bd01b8a9d4);
+
+            
+        
+        
+            
+            var regular_polygon_marker_83d65a3af23f47e0a66664fcef00ed39 = new L.RegularPolygonMarker(
+                new L.LatLng(39.717588,-104.978115),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_007f9e0cc4aa4753870a1f718d1d160f = L.popup({maxWidth: '300'});
+
+            
+                var html_0828c90248e64ac3b19f20bafc4ac785 = $('         <div id="html_0828c90248e64ac3b19f20bafc4ac785"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5757818565.html</div>                 ')[0];
+                popup_007f9e0cc4aa4753870a1f718d1d160f.setContent(html_0828c90248e64ac3b19f20bafc4ac785);
+            
+
+            regular_polygon_marker_83d65a3af23f47e0a66664fcef00ed39.bindPopup(popup_007f9e0cc4aa4753870a1f718d1d160f);
+
+            
+        
+        
+            
+            var regular_polygon_marker_c5a4b1de76764e8ea3b79124832e0ce4 = new L.RegularPolygonMarker(
+                new L.LatLng(39.7327,-104.9717),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_74857a9248c2400ba0d3a3384c390b86 = L.popup({maxWidth: '300'});
+
+            
+                var html_0aa7c82ec0f449f0b6e99f09af4c7935 = $('         <div id="html_0aa7c82ec0f449f0b6e99f09af4c7935"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5751910402.html</div>                 ')[0];
+                popup_74857a9248c2400ba0d3a3384c390b86.setContent(html_0aa7c82ec0f449f0b6e99f09af4c7935);
+            
+
+            regular_polygon_marker_c5a4b1de76764e8ea3b79124832e0ce4.bindPopup(popup_74857a9248c2400ba0d3a3384c390b86);
+
+            
+        
+        
+            
+            var regular_polygon_marker_2c49b2cbddf44855a6ab932e02f0d6ae = new L.RegularPolygonMarker(
+                new L.LatLng(39.755571,-104.96825),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_8d24ea4b2b604851963c897c436c351c = L.popup({maxWidth: '300'});
+
+            
+                var html_b15f3928bd9847898979ff723d6fae33 = $('         <div id="html_b15f3928bd9847898979ff723d6fae33"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5754526703.html</div>                 ')[0];
+                popup_8d24ea4b2b604851963c897c436c351c.setContent(html_b15f3928bd9847898979ff723d6fae33);
+            
+
+            regular_polygon_marker_2c49b2cbddf44855a6ab932e02f0d6ae.bindPopup(popup_8d24ea4b2b604851963c897c436c351c);
+
+            
+        
+        
+            
+            var regular_polygon_marker_a0dcf04270594e18b47a90bc645f25b8 = new L.RegularPolygonMarker(
+                new L.LatLng(39.753586,-104.998637),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#0000ff',
+                    fillOpacity: 1,
+                    numberOfSides: 8,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_68e6e99597db454888b626bae03fb39b = L.popup({maxWidth: '300'});
+
+            
+                var html_7bc92d9387fd41cf8a32879e8ad64fdb = $('         <div id="html_7bc92d9387fd41cf8a32879e8ad64fdb"                 style="width: 100.0%; height: 100.0%;">                 http://denver.craigslist.org/apa/5755075330.html</div>                 ')[0];
+                popup_68e6e99597db454888b626bae03fb39b.setContent(html_7bc92d9387fd41cf8a32879e8ad64fdb);
+            
+
+            regular_polygon_marker_a0dcf04270594e18b47a90bc645f25b8.bindPopup(popup_68e6e99597db454888b626bae03fb39b);
+
+            
+        
+        
+            
+            var regular_polygon_marker_e21e7b2dd2d444adad2ead0d05321ed3 = new L.RegularPolygonMarker(
+                new L.LatLng(39.702248,-104.987396),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#ff0000',
+                    fillOpacity: 1,
+                    numberOfSides: 3,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_4c1fc19808fd4539b74f618e0fbd2deb = L.popup({maxWidth: '300'});
+
+            
+                var html_bd41bca197104ba09844b447d19dd8a1 = $('         <div id="html_bd41bca197104ba09844b447d19dd8a1"                 style="width: 100.0%; height: 100.0%;">                 1 - (39.702248, -104.987396)</div>                 ')[0];
+                popup_4c1fc19808fd4539b74f618e0fbd2deb.setContent(html_bd41bca197104ba09844b447d19dd8a1);
+            
+
+            regular_polygon_marker_e21e7b2dd2d444adad2ead0d05321ed3.bindPopup(popup_4c1fc19808fd4539b74f618e0fbd2deb);
+
+            
+        
+        
+            
+            var regular_polygon_marker_93433510147441cc897c340dadf85fd8 = new L.RegularPolygonMarker(
+                new L.LatLng(39.691106,-104.974581),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#ff0000',
+                    fillOpacity: 1,
+                    numberOfSides: 3,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_a37836fefdfa402c9055b8407cf83ba8 = L.popup({maxWidth: '300'});
+
+            
+                var html_43373645284c466392640e3904955ade = $('         <div id="html_43373645284c466392640e3904955ade"                 style="width: 100.0%; height: 100.0%;">                 2 - (39.691106, -104.974581)</div>                 ')[0];
+                popup_a37836fefdfa402c9055b8407cf83ba8.setContent(html_43373645284c466392640e3904955ade);
+            
+
+            regular_polygon_marker_93433510147441cc897c340dadf85fd8.bindPopup(popup_a37836fefdfa402c9055b8407cf83ba8);
+
+            
+        
+        
+            
+            var regular_polygon_marker_2d9e62e5099a43309be6e955fcd154fd = new L.RegularPolygonMarker(
+                new L.LatLng(39.691106,-104.959347),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#ff0000',
+                    fillOpacity: 1,
+                    numberOfSides: 3,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_ea0999e04df04eb989ae557660d52dd3 = L.popup({maxWidth: '300'});
+
+            
+                var html_78cf4c2dd6754cd0994f7cb6e8949d49 = $('         <div id="html_78cf4c2dd6754cd0994f7cb6e8949d49"                 style="width: 100.0%; height: 100.0%;">                 3 - (39.691106, -104.959347)</div>                 ')[0];
+                popup_ea0999e04df04eb989ae557660d52dd3.setContent(html_78cf4c2dd6754cd0994f7cb6e8949d49);
+            
+
+            regular_polygon_marker_2d9e62e5099a43309be6e955fcd154fd.bindPopup(popup_ea0999e04df04eb989ae557660d52dd3);
+
+            
+        
+        
+            
+            var regular_polygon_marker_2e85254f81514db187dc93ac92be2f39 = new L.RegularPolygonMarker(
+                new L.LatLng(39.738317,-104.959347),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#ff0000',
+                    fillOpacity: 1,
+                    numberOfSides: 3,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_a8a8d556672d47449cdafe495eb87c0e = L.popup({maxWidth: '300'});
+
+            
+                var html_9fb524eb4a40445597ba3077a5f17c65 = $('         <div id="html_9fb524eb4a40445597ba3077a5f17c65"                 style="width: 100.0%; height: 100.0%;">                 4 - (39.738317, -104.959347)</div>                 ')[0];
+                popup_a8a8d556672d47449cdafe495eb87c0e.setContent(html_9fb524eb4a40445597ba3077a5f17c65);
+            
+
+            regular_polygon_marker_2e85254f81514db187dc93ac92be2f39.bindPopup(popup_a8a8d556672d47449cdafe495eb87c0e);
+
+            
+        
+        
+            
+            var regular_polygon_marker_db378bbd779f4a8f87d1eadf7775b32f = new L.RegularPolygonMarker(
+                new L.LatLng(39.738317,-104.940903),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#ff0000',
+                    fillOpacity: 1,
+                    numberOfSides: 3,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_2425b3099acc4a329b051414c92c3b1a = L.popup({maxWidth: '300'});
+
+            
+                var html_0f2b269eb20c4a28824d14933e565105 = $('         <div id="html_0f2b269eb20c4a28824d14933e565105"                 style="width: 100.0%; height: 100.0%;">                 5 - (39.738317, -104.940903)</div>                 ')[0];
+                popup_2425b3099acc4a329b051414c92c3b1a.setContent(html_0f2b269eb20c4a28824d14933e565105);
+            
+
+            regular_polygon_marker_db378bbd779f4a8f87d1eadf7775b32f.bindPopup(popup_2425b3099acc4a329b051414c92c3b1a);
+
+            
+        
+        
+            
+            var regular_polygon_marker_1e254cd7513c4fa4b861613124fe5187 = new L.RegularPolygonMarker(
+                new L.LatLng(39.75832,-104.940903),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#ff0000',
+                    fillOpacity: 1,
+                    numberOfSides: 3,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_22de2a38287142f8b2a875fa0ded4ebf = L.popup({maxWidth: '300'});
+
+            
+                var html_a08100d879ff4e5da477adaa1c497004 = $('         <div id="html_a08100d879ff4e5da477adaa1c497004"                 style="width: 100.0%; height: 100.0%;">                 6 - (39.75832, -104.940903)</div>                 ')[0];
+                popup_22de2a38287142f8b2a875fa0ded4ebf.setContent(html_a08100d879ff4e5da477adaa1c497004);
+            
+
+            regular_polygon_marker_1e254cd7513c4fa4b861613124fe5187.bindPopup(popup_22de2a38287142f8b2a875fa0ded4ebf);
+
+            
+        
+        
+            
+            var regular_polygon_marker_9d438103f72241d2bd0906fea45eb0c2 = new L.RegularPolygonMarker(
+                new L.LatLng(39.75832,-104.973331),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#ff0000',
+                    fillOpacity: 1,
+                    numberOfSides: 3,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_7eb8416ecc8242779b08765e7b81972d = L.popup({maxWidth: '300'});
+
+            
+                var html_a1260ac0d69e414f8c8d162da53cc0b3 = $('         <div id="html_a1260ac0d69e414f8c8d162da53cc0b3"                 style="width: 100.0%; height: 100.0%;">                 7 - (39.75832, -104.973331)</div>                 ')[0];
+                popup_7eb8416ecc8242779b08765e7b81972d.setContent(html_a1260ac0d69e414f8c8d162da53cc0b3);
+            
+
+            regular_polygon_marker_9d438103f72241d2bd0906fea45eb0c2.bindPopup(popup_7eb8416ecc8242779b08765e7b81972d);
+
+            
+        
+        
+            
+            var regular_polygon_marker_232a4c7f9a184cb6ac7be208bf1ad9f5 = new L.RegularPolygonMarker(
+                new L.LatLng(39.771182,-104.973331),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#ff0000',
+                    fillOpacity: 1,
+                    numberOfSides: 3,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_26a8351f83704663ad6857af6bc68831 = L.popup({maxWidth: '300'});
+
+            
+                var html_d44dad4f672f4665aa7b4db4f0b42da8 = $('         <div id="html_d44dad4f672f4665aa7b4db4f0b42da8"                 style="width: 100.0%; height: 100.0%;">                 8 - (39.771182, -104.973331)</div>                 ')[0];
+                popup_26a8351f83704663ad6857af6bc68831.setContent(html_d44dad4f672f4665aa7b4db4f0b42da8);
+            
+
+            regular_polygon_marker_232a4c7f9a184cb6ac7be208bf1ad9f5.bindPopup(popup_26a8351f83704663ad6857af6bc68831);
+
+            
+        
+        
+            
+            var regular_polygon_marker_b862f0d5171a4ffd902ba8476521c0ae = new L.RegularPolygonMarker(
+                new L.LatLng(39.743186,-105.01443),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#ff0000',
+                    fillOpacity: 1,
+                    numberOfSides: 3,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_81f4b55af52c4072b0eed3ead6007a2a = L.popup({maxWidth: '300'});
+
+            
+                var html_7d424fda89e24c6eab9ea650979526ab = $('         <div id="html_7d424fda89e24c6eab9ea650979526ab"                 style="width: 100.0%; height: 100.0%;">                 9 - (39.743186, -105.01443)</div>                 ')[0];
+                popup_81f4b55af52c4072b0eed3ead6007a2a.setContent(html_7d424fda89e24c6eab9ea650979526ab);
+            
+
+            regular_polygon_marker_b862f0d5171a4ffd902ba8476521c0ae.bindPopup(popup_81f4b55af52c4072b0eed3ead6007a2a);
+
+            
+        
+        
+            
+            var regular_polygon_marker_33990e127c0c41909801cf0a60c8694e = new L.RegularPolygonMarker(
+                new L.LatLng(39.71845,-105.003763),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#ff0000',
+                    fillOpacity: 1,
+                    numberOfSides: 3,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_e2a10297299e4958ae2eda289caa0a7f = L.popup({maxWidth: '300'});
+
+            
+                var html_be926c10565b47789f1eb6f4cf2e027d = $('         <div id="html_be926c10565b47789f1eb6f4cf2e027d"                 style="width: 100.0%; height: 100.0%;">                 10 - (39.71845, -105.003763)</div>                 ')[0];
+                popup_e2a10297299e4958ae2eda289caa0a7f.setContent(html_be926c10565b47789f1eb6f4cf2e027d);
+            
+
+            regular_polygon_marker_33990e127c0c41909801cf0a60c8694e.bindPopup(popup_e2a10297299e4958ae2eda289caa0a7f);
+
+            
+        
+        
+            
+            var regular_polygon_marker_8e8ecfb16aa544f1aa7c394ba734a760 = new L.RegularPolygonMarker(
+                new L.LatLng(39.702248,-104.987396),
+                {
+                    icon : new L.Icon.Default(),
+                    color: 'black',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#ff0000',
+                    fillOpacity: 1,
+                    numberOfSides: 3,
+                    rotation: 0,
+                    radius: 4
+                    }
+                )
+                .addTo(map_f6466d6aa7ce4eb684a4922ef2146074);
+            
+        
+            
+            var popup_6b9a95426a044800b4517ae5da2ea2c2 = L.popup({maxWidth: '300'});
+
+            
+                var html_280182e5e8a1452498cce062afc23c84 = $('         <div id="html_280182e5e8a1452498cce062afc23c84"                 style="width: 100.0%; height: 100.0%;">                 11 - (39.702248, -104.987396)</div>                 ')[0];
+                popup_6b9a95426a044800b4517ae5da2ea2c2.setContent(html_280182e5e8a1452498cce062afc23c84);
+            
+
+            regular_polygon_marker_8e8ecfb16aa544f1aa7c394ba734a760.bindPopup(popup_6b9a95426a044800b4517ae5da2ea2c2);
+
+            
+        
+        
+            
+                var poly_line_76dae1d9e5fb475d8e43a55b98a267d6 = L.polyline(
+                    [[39.702248, -104.987396], [39.691106, -104.974581], [39.691106, -104.959347], [39.738317, -104.959347], [39.738317, -104.940903], [39.75832, -104.940903], [39.75832, -104.973331], [39.771182, -104.973331], [39.743186, -105.01443], [39.71845, -105.003763], [39.702248, -104.987396]],
+                    {
+                        color: 'red',
+                        weight: 2.5,
+                        opacity: 1,
+                        });
+                map_f6466d6aa7ce4eb684a4922ef2146074.addLayer(poly_line_76dae1d9e5fb475d8e43a55b98a267d6);
+            
+        
+        
+        </script>
+        
