@@ -48,26 +48,39 @@ def get_links(br, k=0):
 
 
 def parse_html(html):
+    lat = None
+    lon = None
+    price = None
+    housing = None
+    info = None
+    posted = None
+    updated = None
+
     soup = BeautifulSoup(html, 'html')
+
     maps = soup.findAll('div', {'id': 'map'})
     if len(maps) == 1:
         lat = maps[0].attrs['data-latitude']
         lon = maps[0].attrs['data-longitude']
-
     elif len(maps) > 1:
         raise ValueError('more than one mapbox?')
-    else:
-        pass
     price = soup.find('span', {'class': 'price'}).text
-    housing = soup.find('span', {'class': 'housing'}).text
-    info = soup.findAll('p', {'class': 'postinginfo reveal'})
 
+    info = soup.findAll('p', {'class': 'postinginfo reveal'})
     for i in info:
-        if 'Posted' in i.text:
+        if 'posted' in i.text.lower():
             posted = i.text
-        elif 'Updated' in i.text:
+        elif 'updated' in i.text.lower():
             updated = i.text
-    return posted, info
+
+    attrs_group = []
+    attrs = soup.findAll('p', {'class': 'attrgroup'})
+    for a in attrs:
+        spans = a.findAll('span')
+        for s in spans:
+            attrs_group.append(s.text)
+    dic = {'coord': (lat, lon), 'price': (price,), 'info': (posted, updated), 'attributes': tuple(attrs_group)}
+    return dic
 
 
 def insert_mongo(br, links):
@@ -79,10 +92,15 @@ def insert_mongo(br, links):
 
     bar = progressbar.ProgressBar()
     for link in bar(links):
-        br.follow_link(link)
-        html = br.response().read()
-        dic = {'_id': link.attrs[1][1], 'html': html}
-        coll.insert_one(dic)
+        try:
+            br.follow_link(link)
+            html = br.response().read()
+            dic = parse_html(html)
+            dic.update({'_id': link.attrs[1][1]})
+            coll.insert_one(dic)
+        except Exception as e:
+            with open('error_log.txt','a') as f:
+                f.write(e)
 
 
 def draw_map():
@@ -120,15 +138,12 @@ def make_df(links):
 
 
 def main():
-    url = "http://denver.craigslist.org/search/apa?hasPic=1&search_distance=3&postal=80206&max_price=2000&pets_dog=1"
-    br = start_browser(url)
-    links = get_links(br)
-    # df = make_df(links)
+    pass
+
+
     insert_mongo(br, links)
 
 if __name__ == '__main__':
-    # draw_map()
-    # main()
-    with open('test.txt') as f:
-        html = f.read()
-    soup = parse_html(html)
+    url = "http://denver.craigslist.org/search/apa?hasPic=1&search_distance=3&postal=80206&max_price=2000&pets_dog=1"
+    br = start_browser(url)
+    links = get_links(br)
