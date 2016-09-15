@@ -6,11 +6,13 @@ import mechanize
 import cookielib
 import time
 import pandas as pd
-from progressbar import Percentage, Bar, ProgressBar, Counter
+from progressbar import Percentage, Bar, ProgressBar, Counter, ETA
 import matplotlib.path as mplPath
 import numpy as np
 import folium
 import re
+import subprocess
+import datetime as dt
 
 
 def start_browser(url):
@@ -57,7 +59,7 @@ def parse_html(html):
     posted = None
     updated = None
 
-    soup = BeautifulSoup(html, 'html')
+    soup = BeautifulSoup(html, 'html.parser')
 
     maps = soup.findAll('div', {'id': 'map'})
     if len(maps) == 1:
@@ -84,14 +86,28 @@ def parse_html(html):
     return dic
 
 
-def insert_mongo(br, links):
+def connect_mongo():
     client = MongoClient()
-    client.drop_database('craigslist')
-
     db = client['craigslist']
     coll = db['housing']
+    return coll
 
-    bar = ProgressBar()
+
+def insert_mongo(br, links):
+    coll = connect_mongo()
+
+    old_ids = [x['_id'] for x in coll.find()]
+    today_ids = [x.attrs[1][1] for x in links]
+
+    new_ids = [x for x in today_ids if x not in old_ids]
+    delete_ids = [x for x in old_ids if x not in today_ids]
+
+    for id in delete_ids:
+        coll.delete_one({'_id': id})
+
+    links = [link for link in links if link.attrs[1][1] in new_ids]
+
+    bar = ProgressBar(widgets=['Fetching: ', Counter(), ' ', Bar(), ' ', ETA()])
     for link in bar(links):
         time.sleep(0.5)
         try:
@@ -103,7 +119,8 @@ def insert_mongo(br, links):
         except Exception as e:
             br = start_browser('http://denver.craigslist.org/')
             with open('error_log.txt', 'a') as f:
-                f.write(str(e) + '\n')
+                f.write('{0} - {1} \n'.format(e, link.absolute_url))
+                subprocess.Popen(['open', link.absolute_url])
 
 
 def get_boundary_points():
@@ -130,7 +147,6 @@ def draw_map():
     for i, each in enumerate(points):
         popup = '{0} - {1}'.format(i + 1, each)
         folium.RegularPolygonMarker(each, popup=popup, fill_color='#ff0000', number_of_sides=8, radius=4).add_to(my_map)
-    #     folium.Marker(each, popup=popup).add_to(my_map)
     folium.PolyLine(points, color="red", weight=2.5, opacity=1).add_to(my_map)
     my_map.save("./housing_boundaries.html")
 
@@ -155,7 +171,6 @@ def parse_attrs(attrs):
             laundry = a
         elif 'apartment' in a:
             apartment = 'Yes'
-
     return bed, bath, sqft, available, laundry, apartment
 
 
@@ -168,9 +183,7 @@ def parse_info(info):
 
 
 def make_df():
-    client = MongoClient()
-    db = client['craigslist']
-    coll = db['housing']
+    coll = connect_mongo()
     df = pd.DataFrame()
     for r in coll.find():
         attrs = r['attributes']
@@ -194,34 +207,53 @@ def make_df():
     for col in cols:
         df[col] = df[col].astype(float)
 
+    yesterday = dt.datetime.today().date() - dt.timedelta(days=1)
+
+    m = df['updated'].isnull()
+    df.loc[m, 'updated'] = df.loc[m, 'posted']
+
+    df['new'] = False
+    m = df['updated'] >= yesterday
+    df.loc[m, 'new'] = True
+
     print 'df constructed!'
     return df
+
 
 def plot_coord(df):
     points = get_boundary_points()
     bbPath = mplPath.Path(np.array(points))
 
     df = df[df.apply(lambda x: bbPath.contains_point((x['lat'], x['lon'])), axis=1)]
-    df = df[df['apartment'] =='No']
+    df = df[df['apartment'] == 'No']
     df.reset_index(drop=True, inplace=True)
     my_map = folium.Map(location=[df['lat'].mean(), df['lon'].mean()], tiles='Stamen Toner', zoom_start=13)
 
-    pbar = ProgressBar(widgets=['Plotting: ', Counter(), Bar()], maxval=len(df) + 1).start()
+    pbar = ProgressBar(widgets=['Plotting: ', Counter(), ' ', Bar(), ' ', ETA()], maxval=len(df) + 1).start()
     for i, r in df.iterrows():
-        popup = 'http://denver.craigslist.org/apa/{0}.html'.format(r['id'])
+        if r['new'] == True:
+            fill_color = '#33cc33'
+        else:
+            fill_color = '#0000ff'
+            
+        html = '{1}br/{2}ba | {3} ft2 | ${4} <br> <a href="http://denver.craigslist.org/apa/{0}.html", target="_blank">link</a> '.format(r['id'],r['bed'],r['bath'],r['sqft'],r['price'])
+        iframe = folium.element.IFrame(html=html, width=200, height=50)
+        poppin = folium.Popup(html=iframe)
         folium.RegularPolygonMarker((r['lat'], r['lon']),
-                                    popup=popup,
-                                    fill_color='#0000ff',
+                                    popup=poppin,
+                                    fill_color=fill_color,
                                     number_of_sides=8,
                                     radius=4).add_to(my_map)
-
         pbar.update(i + 1)
     pbar.finish()
+
     for i, each in enumerate(points):
         popup = '{0} - {1}'.format(i + 1, each)
         folium.RegularPolygonMarker(each, popup=popup, fill_color='#ff0000', number_of_sides=3, radius=4).add_to(my_map)
     folium.PolyLine(points, color="red", weight=2.5, opacity=1).add_to(my_map)
+
     my_map.save("./found.html")
+    subprocess.Popen(['open', 'found.html'])
     print 'plotting done!'
 
 
@@ -232,5 +264,6 @@ def fetch_day():
     insert_mongo(br, links)
 
 if __name__ == '__main__':
+    fetch_day()
     df = make_df()
     plot_coord(df)
