@@ -11,6 +11,7 @@ import folium
 import subprocess
 import datetime as dt
 from parsers import *
+from aws import *
 
 
 class CraigsList(object):
@@ -71,28 +72,28 @@ class CraigsList(object):
             self.coll.delete_one({'_id': id})
 
         new_links = [link for link in self.links if link.attrs[1][1] in new_ids]
-
-        bar = ProgressBar(widgets=['Fetching: ', Counter(), ' ', Bar(), ' ', ETA()])
-        for link in bar(new_links):
-            time.sleep(0.5)
-            try:
-                self.br.follow_link(link)
-                html = self.br.response().read()
-                dic = parse_html(html)
-                dic.update({'_id': link.attrs[1][1]})
-                self.coll.insert_one(dic)
-            except Exception as e:
-                self.br = self.start_browser()
-                with open('error_log.txt', 'a') as f:
-                    f.write('{0} - {1} \n'.format(e, link.absolute_url))
-                    subprocess.Popen(['open', link.absolute_url])
+        if len(new_links) > 0:
+            bar = ProgressBar(widgets=['Fetching: ', Counter(), '/{} '.format(len(new_links)), Bar(), ' ', ETA()])
+            for link in bar(new_links):
+                time.sleep(0.5)
+                try:
+                    self.br.follow_link(link)
+                    html = self.br.response().read()
+                    dic = parse_html(html)
+                    dic.update({'_id': link.attrs[1][1]})
+                    self.coll.insert_one(dic)
+                except Exception as e:
+                    self.br = self.start_browser()
+                    with open('error_log.txt', 'a') as f:
+                        f.write('{0} - {1} \n'.format(e, link.absolute_url))
+                        subprocess.Popen(['open', link.absolute_url])
 
     def get_boundary_points(self):
         p1 = (39.702248, -104.987396)
         p2 = (39.691106, -104.974581)
         p3 = (39.691106, -104.959347)
-        p4 = (39.738317, -104.959347)
-        p5 = (39.738317, -104.940903)
+        p4 = (39.718136, -104.959347)
+        p5 = (39.718136, -104.940903)
         p6 = (39.758320, -104.940903)
         p7 = (39.758320, -104.973331)
         p8 = (39.771182, -104.973331)
@@ -146,14 +147,18 @@ class CraigsList(object):
         df.reset_index(drop=True, inplace=True)
         my_map = folium.Map(location=[df['lat'].mean(), df['lon'].mean()], tiles='Stamen Toner', zoom_start=13)
 
-        pbar = ProgressBar(widgets=['Plotting: ', Counter(), ' ', Bar(), ' ', ETA()], maxval=len(df) + 1).start()
+        pbar = ProgressBar(widgets=['Plotting: ', Counter(),
+                                    '/{0} '.format(len(df) + 1), Bar(), ' ', ETA()], maxval=len(df) + 1).start()
+        self.new = len(df[df['new'] == True])
         for i, r in df.iterrows():
+
             if r['new'] == True:
                 fill_color = '#33cc33'
             else:
                 fill_color = '#0000ff'
 
-            html = '{1}br/{2}ba | {3} ft2 | ${4} <br> <a href="http://denver.craigslist.org/apa/{0}.html", target="_blank">link</a> '.format(r['id'], r['bed'], r['bath'], r['sqft'], r['price'])
+            html = '{1}br/{2}ba | {3} ft2 | ${4} <br> <a href="http://denver.craigslist.org/apa/{0}.html", target="_blank">link</a> '.format(r[
+                                                                                                                                             'id'], r['bed'], r['bath'], r['sqft'], r['price'])
             iframe = folium.element.IFrame(html=html, width=200, height=50)
             poppin = folium.Popup(html=iframe)
             folium.RegularPolygonMarker((r['lat'], r['lon']),
@@ -173,16 +178,26 @@ class CraigsList(object):
         subprocess.Popen(['open', 'found.html'])
         print 'plotting done!'
 
+    def upload_s3(self):
+        bucket = connect_s3()
+        key = bucket.new_key('craigslist/found.html')
+        key.set_contents_from_filename('found.html')
+        message = '{0} new entries uploaded to http://www.estenssoros.com/craigslist/found.html'.format(self.new)
+        send_message(message)
+        
     def run(self):
         self.links = self.get_links()
         self.insert_mongo()
         self.df = self.make_df()
         self.plot_coord()
+        self.upload_s3()
+
 
 def main():
     url = "http://denver.craigslist.org/search/apa?hasPic=1&search_distance=3&postal=80206&max_price=2000&pets_dog=1"
-    craigslist= CraigsList(url)
+    craigslist = CraigsList(url)
     craigslist.run()
 
 if __name__ == '__main__':
     main()
+    # bucket = connect_s3()
