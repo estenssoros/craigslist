@@ -71,10 +71,11 @@ class CraigsList(object):
         for id in delete_ids:
             self.coll.delete_one({'_id': id})
 
-        new_links = [link for link in self.links if link.attrs[1][1] in new_ids]
-        if len(new_links) > 0:
-            bar = ProgressBar(widgets=['Fetching: ', Counter(), '/{} '.format(len(new_links)), Bar(), ' ', ETA()])
-            for link in bar(new_links):
+        self.new_links = [link for link in self.links if link.attrs[1][1] in new_ids]
+
+        if len(self.new_links) > 0:
+            bar = ProgressBar(widgets=['Fetching: ', Counter(), '/{} '.format(len(self.new_links)), Bar(), ' ', ETA()])
+            for link in bar(self.new_links):
                 time.sleep(0.5)
                 try:
                     self.br.follow_link(link)
@@ -83,6 +84,7 @@ class CraigsList(object):
                     dic.update({'_id': link.attrs[1][1]})
                     self.coll.insert_one(dic)
                 except Exception as e:
+                    self.coll.insert_one({'_id': link.attrs[1][1]})
                     self.br = self.start_browser()
                     with open('error_log.txt', 'a') as f:
                         f.write('{0} - {1} \n'.format(e, link.absolute_url))
@@ -103,8 +105,9 @@ class CraigsList(object):
         return points
 
     def make_df(self):
+        print 'Building DataFrame...'
         df = pd.DataFrame()
-        for r in self.coll.find():
+        for r in self.coll.find({'attributes' : {'$exists' : True}}):
             attrs = r['attributes']
             bed, bath, sqft, available, laundry, apartment = parse_attrs(attrs)
             posted, updated = parse_info(r['info'])
@@ -135,7 +138,7 @@ class CraigsList(object):
         m = df['updated'] >= yesterday
         df.loc[m, 'new'] = True
 
-        print 'df constructed!'
+        print 'DataFrame constructed!'
         return df
 
     def plot_coord(self):
@@ -149,7 +152,8 @@ class CraigsList(object):
 
         pbar = ProgressBar(widgets=['Plotting: ', Counter(),
                                     '/{0} '.format(len(df) + 1), Bar(), ' ', ETA()], maxval=len(df) + 1).start()
-        self.new = len(df[df['new'] == True])
+        self.new = [link for link in self.new_links if link in df['id'][df['new'] == True].values.tolist()]
+
         for i, r in df.iterrows():
 
             if r['new'] == True:
@@ -165,13 +169,13 @@ class CraigsList(object):
                                         popup=poppin,
                                         fill_color=fill_color,
                                         number_of_sides=8,
-                                        radius=4).add_to(my_map)
+                                        radius=6).add_to(my_map)
             pbar.update(i + 1)
         pbar.finish()
 
         for i, each in enumerate(self.points):
             popup = '{0} - {1}'.format(i + 1, each)
-            folium.RegularPolygonMarker(each, popup=popup, fill_color='#ff0000', number_of_sides=3, radius=4).add_to(my_map)
+            folium.RegularPolygonMarker(each, popup=popup, fill_color='#ff0000', number_of_sides=3, radius=6).add_to(my_map)
         folium.PolyLine(self.points, color="red", weight=2.5, opacity=1).add_to(my_map)
 
         my_map.save("./found.html")
@@ -182,9 +186,10 @@ class CraigsList(object):
         bucket = connect_s3()
         key = bucket.new_key('craigslist/found.html')
         key.set_contents_from_filename('found.html')
-        message = '{0} new entries uploaded to http://www.estenssoros.com/craigslist/found.html'.format(self.new)
-        send_message(message)
-        
+        if len(self.new) > 0:
+            message = "{0} new entries uploaded to http://www.estenssoros.com/craigslist/found.html".format(len(self.new))
+            send_message(message)
+
     def run(self):
         self.links = self.get_links()
         self.insert_mongo()
