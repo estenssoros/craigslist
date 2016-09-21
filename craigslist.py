@@ -1,7 +1,5 @@
 from __future__ import division
 from pymongo import MongoClient
-import mechanize
-import cookielib
 import time
 import pandas as pd
 from progressbar import Percentage, Bar, ProgressBar, Counter, ETA
@@ -12,33 +10,17 @@ import subprocess
 import datetime as dt
 from parsers import *
 from aws import *
+from browser import start_browser
+import os
 
 
 class CraigsList(object):
 
     def __init__(self, url):
         self.url = url
-        self.br = self.start_browser()
+        self.br = start_browser(self.url)
         self.coll = self.connect_mongo()
         self.points = self.get_boundary_points()
-
-    def start_browser(self):
-        br = mechanize.Browser(factory=mechanize.RobustFactory())
-        cj = cookielib.LWPCookieJar()
-        br.set_cookiejar(cj)
-
-        br.set_handle_equiv(True)
-        br.set_handle_redirect(True)
-        br.set_handle_referer(True)
-        br.set_handle_robots(False)
-
-        br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
-
-        br.addheaders = [
-            ('User-agent', 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1')]
-        br.open(self.url)
-        print br.title()
-        return br
 
     def get_links(self, k=0):
         print 'page: {0}'.format(k)
@@ -74,7 +56,7 @@ class CraigsList(object):
         self.new_links = [link for link in self.links if link.attrs[1][1] in new_ids]
 
         if len(self.new_links) > 0:
-            bar = ProgressBar(widgets=['Fetching: ', Counter(), '/{} '.format(len(self.new_links)), Bar(), ' ', ETA()])
+            bar = ProgressBar(widgets=['Fetching: ', Counter(), '/{} |'.format(len(self.new_links)), Percentage(),' ',Bar(), ' ', ETA()])
             for link in bar(self.new_links):
                 time.sleep(0.5)
                 try:
@@ -84,8 +66,11 @@ class CraigsList(object):
                     dic.update({'_id': link.attrs[1][1]})
                     self.coll.insert_one(dic)
                 except Exception as e:
-                    self.coll.insert_one({'_id': link.attrs[1][1]})
-                    self.br = self.start_browser()
+                    try:
+                        self.coll.insert_one({'_id': link.attrs[1][1]})
+                    except:
+                        pass
+                    self.br = start_browser(self.url)
                     with open('error_log.txt', 'a') as f:
                         f.write('{0} - {1} \n'.format(e, link.absolute_url))
                         subprocess.Popen(['open', link.absolute_url])
@@ -99,19 +84,25 @@ class CraigsList(object):
         p6 = (39.758320, -104.940903)
         p7 = (39.758320, -104.973331)
         p8 = (39.771182, -104.973331)
-        p9 = (39.743186, -105.014430)
-        p10 = (39.718450, -105.003763)
-        points = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p1]
+        p9 = (39.754689, -104.994373)
+        p10 = (39.761634, -105.004886)
+        p11 = (39.767492, -104.997945)
+        p12 = (39.783419, -104.998255)
+        p13 = (39.783419, -105.052862)
+        p14 = (39.740712, -105.053053)
+        p15 = (39.740758, -105.012972)
+        points = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p1]
         return points
 
     def make_df(self):
         print 'Building DataFrame...'
         df = pd.DataFrame()
-        for r in self.coll.find({'attributes' : {'$exists' : True}}):
+        for r in self.coll.find({'attributes': {'$exists': True}}):
             attrs = r['attributes']
             bed, bath, sqft, available, laundry, apartment = parse_attrs(attrs)
             posted, updated = parse_info(r['info'])
             df = df.append({'id': r['_id'],
+                            'image': r['image'],
                             'lat': r['coord'][0],
                             'lon': r['coord'][1],
                             'price': r['price'][0],
@@ -139,31 +130,53 @@ class CraigsList(object):
         df.loc[m, 'new'] = True
 
         print 'DataFrame constructed!'
-        return df
-
-    def plot_coord(self):
 
         bbPath = mplPath.Path(np.array(self.points))
 
-        df = self.df[self.df.apply(lambda x: bbPath.contains_point((x['lat'], x['lon'])), axis=1)]
+        df = df[df.apply(lambda x: bbPath.contains_point((x['lat'], x['lon'])), axis=1)]
         df = df[df['apartment'] == 'No']
         df.reset_index(drop=True, inplace=True)
-        my_map = folium.Map(location=[df['lat'].mean(), df['lon'].mean()], tiles='Stamen Toner', zoom_start=13)
 
+        lst = df['id'][df['new'] == True].values.tolist()
+        links = [link.attrs[1][1] for link in self.new_links]
+        self.new = [link for link in links if link in lst]
+
+        return df
+
+    def get_images(self):
+        downloaded = [x.split('.jpg')[0] for x in os.listdir('images/') if x.endswith('.jpg')]
+        needs = [id for id in self.df['id'] if id not in downloaded]
+        urls = {id: list(self.df.loc[self.df['id'] == id, 'image'])[0] for id in needs}
+        self.br = start_browser()
+        for id, url in urls.iteritems():
+            data = self.br.open(url).read()
+            with open('images/{0}.jpg'.format(id), 'wb') as f:
+                f.write(data)
+            self.br.back()
+            time.sleep(0.5)
+
+    def plot_coord(self):
+        my_map = folium.Map(location=[self.df['lat'].mean(), self.df['lon'].mean()], tiles='Stamen Toner', zoom_start=12)
         pbar = ProgressBar(widgets=['Plotting: ', Counter(),
-                                    '/{0} '.format(len(df) + 1), Bar(), ' ', ETA()], maxval=len(df) + 1).start()
-        self.new = [link for link in self.new_links if link in df['id'][df['new'] == True].values.tolist()]
+                                    '/{0} '.format(len(self.df) + 1), Bar(), ' ', ETA()], maxval=len(self.df) + 1).start()
 
-        for i, r in df.iterrows():
+        for i, r in self.df.iterrows():
 
             if r['new'] == True:
                 fill_color = '#33cc33'
             else:
                 fill_color = '#0000ff'
 
-            html = '{1}br/{2}ba | {3} ft2 | ${4} <br> <a href="http://denver.craigslist.org/apa/{0}.html", target="_blank">link</a> '.format(r[
-                                                                                                                                             'id'], r['bed'], r['bath'], r['sqft'], r['price'])
-            iframe = folium.element.IFrame(html=html, width=200, height=50)
+            html = '''<html>
+            <body>
+            {1}br/{2}ba | {3} ft2 | ${4} |
+            <a href="http://denver.craigslist.org/apa/{0}.html", target="_blank">link</a>
+            <br>
+            <img src="{5}" style="width:300">
+            </body>
+            </html>'''.format(r['id'], r['bed'], r['bath'], r['sqft'], r['price'], r['image'])
+            # iframe = folium.element.IFrame(html=html, width=250, height=50)
+            iframe = folium.element.IFrame(html=html, width=300, height=250)
             poppin = folium.Popup(html=iframe)
             folium.RegularPolygonMarker((r['lat'], r['lon']),
                                         popup=poppin,
@@ -199,10 +212,13 @@ class CraigsList(object):
 
 
 def main():
-    url = "http://denver.craigslist.org/search/apa?hasPic=1&search_distance=3&postal=80206&max_price=2000&pets_dog=1"
-    craigslist = CraigsList(url)
-    craigslist.run()
+    for i in range(4):
+        url = "http://denver.craigslist.org/search/apa?hasPic=1&search_distance=5&postal=80206&max_price=2000&pets_dog=1"
+        craigslist = CraigsList(url)
+        craigslist.run()
+        bar = ProgressBar(widgets=['Waiting: ', Counter(), '/3600 |', Percentage(),' ',Bar(), ' ', ETA()])
+        for t in bar(range(3600)):
+            time.sleep(1)   
 
 if __name__ == '__main__':
-    main()
-    # bucket = connect_s3()
+    c = main()

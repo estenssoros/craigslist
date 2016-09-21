@@ -32,6 +32,8 @@ def parse_attrs(attrs):
     return bed, bath, sqft, available, laundry, apartment
 
 def parse_html(html):
+    with open('test.html','w') as f:
+        f.write(html)
     lat = None
     lon = None
     price = None
@@ -39,6 +41,7 @@ def parse_html(html):
     info = None
     posted = None
     updated = None
+    img = None
 
     soup = BeautifulSoup(html, 'html.parser')
 
@@ -63,7 +66,8 @@ def parse_html(html):
         spans = a.findAll('span')
         for s in spans:
             attrs_group.append(s.text)
-    dic = {'coord': (lat, lon), 'price': (price,), 'info': (posted, updated), 'attributes': tuple(attrs_group)}
+    image = soup.find('img')['src']
+    dic = {'coord': (lat, lon), 'price': (price,), 'info': (posted, updated), 'attributes': tuple(attrs_group),'image':image}
     return dic
 
 if __name__ == '__main__':
