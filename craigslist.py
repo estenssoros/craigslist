@@ -212,13 +212,10 @@ class CraigsList(object):
 
 
 def main():
-    for i in range(4):
-        url = "http://denver.craigslist.org/search/apa?hasPic=1&search_distance=5&postal=80206&max_price=2000&pets_dog=1"
-        craigslist = CraigsList(url)
-        craigslist.run()
-        bar = ProgressBar(widgets=['Waiting: ', Counter(), '/3600 |', Percentage(),' ',Bar(), ' ', ETA()])
-        for t in bar(range(3600)):
-            time.sleep(1)   
+    url = "http://denver.craigslist.org/search/apa?hasPic=1&search_distance=5&postal=80206&max_price=2000&pets_dog=1"
+    craigslist = CraigsList(url)
+    craigslist.run()
+    
 
 if __name__ == '__main__':
     c = main()
